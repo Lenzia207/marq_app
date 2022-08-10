@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marq_app/widget/todo_form_widget.dart';
 
 class AddTodoDialogWidget extends StatefulWidget {
   @override
@@ -21,6 +22,14 @@ class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
             Text(
               "Aufgabe hinzufügen",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+            ),
+            const SizedBox(height: 5), //Space inbetween
+            TodoFormWidget(
+              //Callbacks
+              onChangedTitle: (title) => setState(() => this.title = title),
+              onChangedDescription: (description) =>
+                  setState(() => this.description = description),
+              onSaveTodo: (value) {},
             )
           ],
         ),
