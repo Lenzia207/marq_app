@@ -38,6 +38,9 @@ dependencies:
   #Slidable (Edit,Delete)
   flutter_slidable: ^0.5.7
 
+  #Riverpod
+  flutter_riverpod: ^2.0.0-dev.9
+
   # Firbebase integration
   firebase_core: ^0.5.2+1
   cloud_firestore: ^0.14.3+1
