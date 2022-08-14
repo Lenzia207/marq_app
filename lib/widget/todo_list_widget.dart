@@ -13,16 +13,24 @@ class TodoListWidget extends ConsumerWidget {
     List<Todo> todos = ref.watch(todosProvider).todos;
 
     //Render the todos in a scrollable list view --> ListView()
-    return ListView(
-      children: [
+    return ListView.builder(
+        physics: BouncingScrollPhysics(),
+        padding: EdgeInsets.all(16),
+        itemCount: todos.length,
+        itemBuilder: (context, index) {
+          final todo = todos[index];
+
+          return TodoWidget(todo: todo);
+        });
+
+    /* children: [
         for (final todo in todos)
           CheckboxListTile(
             value: todo.isDone,
             onChanged: (value) =>
                 ref.read(todosProvider.notifier).toggle(todo.id),
-            title: Text(todo.description),
+            title: Text(todo.title),
           ),
-      ],
-    );
+      ], */
   }
 }

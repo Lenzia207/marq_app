@@ -10,9 +10,10 @@ class TodosNotifier extends ChangeNotifier {
         createdTime: DateTime.now(),
         id: "",
         title: 'Third Task',
-        description: '''-Thing1
-    Thing 2
-    - Thing3 '''),
+        description: '''
+-Thing 1 
+- Thing 2
+- Thing 3 '''),
   ];
 
   // Let's allow the UI to add todos.
