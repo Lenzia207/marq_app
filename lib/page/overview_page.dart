@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:marq_app/main.dart';
 import 'package:marq_app/widget/add_todo_dialog.dart';
 
+import '../widget/todo_list_widget.dart';
+
 class OverviewPage extends StatefulWidget {
   _OverviewPageState createState() => _OverviewPageState();
 }
@@ -12,7 +14,7 @@ class _OverviewPageState extends State<OverviewPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = [
-      Container(),
+      TodoListWidget(),
       Container(),
     ];
 

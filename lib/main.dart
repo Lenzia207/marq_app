@@ -2,7 +2,7 @@ import 'package:flutter/material.dart'; //contains build in widgets + base class
 import 'package:marq_app/page/overview_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(ProviderScope(child: MyApp()));
 
 class MyApp extends StatelessWidget {
   static final String title = 'Marquably Aufgaben';
