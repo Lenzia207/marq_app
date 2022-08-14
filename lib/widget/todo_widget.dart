@@ -13,7 +13,10 @@ class TodoWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Slidable(
+  //ClipRRect() --> For Border Radius Container/Box/Widget
+  Widget build(BuildContext context) => ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: Slidable(
         child: buildTodo(context),
         actionPane: SlidableDrawerActionPane(),
         key: Key(todo.id),
@@ -38,7 +41,7 @@ class TodoWidget extends StatelessWidget {
             onTap: () {},
           )
         ],
-      );
+      ));
 
   Widget buildTodo(BuildContext context) => Container(
       padding: EdgeInsets.all(20),

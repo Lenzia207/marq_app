@@ -13,15 +13,22 @@ class TodoListWidget extends ConsumerWidget {
     List<Todo> todos = ref.watch(todosProvider).todos;
 
     //Render the todos in a scrollable list view --> ListView()
-    return ListView.builder(
-        physics: BouncingScrollPhysics(),
-        padding: EdgeInsets.all(16),
-        itemCount: todos.length,
-        itemBuilder: (context, index) {
-          final todo = todos[index];
+    return todos.isEmpty
+        ? Center(
+            child: Text(
+            'Keine Aufgaben',
+            style: TextStyle(fontSize: 20),
+          ))
+        : ListView.separated(
+            physics: BouncingScrollPhysics(),
+            padding: EdgeInsets.all(16),
+            separatorBuilder: (context, index) => Container(height: 10),
+            itemCount: todos.length,
+            itemBuilder: (context, index) {
+              final todo = todos[index];
 
-          return TodoWidget(todo: todo);
-        });
+              return TodoWidget(todo: todo);
+            });
 
     /* children: [
         for (final todo in todos)
