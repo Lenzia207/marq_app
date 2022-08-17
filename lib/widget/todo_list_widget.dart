@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:marq_app/widget/todo_widget.dart';
@@ -11,6 +13,7 @@ class TodoListWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     List<Todo> todos = ref.watch(todosProvider);
+    inspect(todos);
 
     //Render the todos in a scrollable list view --> ListView()
     return todos.isEmpty

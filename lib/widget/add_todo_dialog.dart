@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:marq_app/model/todo_model.dart';
 import 'package:marq_app/provider/todo_provider.dart';
 import 'package:marq_app/widget/todo_form_widget.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AddTodoDialogWidget extends StatefulWidget {
-  @override
-  _AddTodoDialogWidgetState createState() => _AddTodoDialogWidgetState();
-}
-
-class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
+class AddTodoDialog extends HookConsumerWidget {
   final _formKey = GlobalKey<
       FormState>(); //Validate the fields in the Dialog (Title/Überschrift)
 
@@ -18,44 +15,53 @@ class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
   String description = " ";
 
   @override
-  Widget build(BuildContext context) => AlertDialog(
-          content: Form(
-        key: _formKey,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Aufgabe hinzufügen",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-            ),
-            const SizedBox(height: 5), //Space inbetween
-            TodoFormWidget(
-              //Callbacks
-              onChangedTitle: (title) => setState(() => this.title = title),
-              onChangedDescription: (description) =>
-                  setState(() => this.description = description),
-              onSaveTodo: (value) {} /* addTodo */,
-            )
-          ],
-        ),
-      ));
+  Widget build(BuildContext context, WidgetRef ref) {
+    final title = useState<String>("");
+    final description = useState<String>("");
 
-  void addTodo() {
-    //calls the todo Form validator of the title --> that makes sure field is not Empty (title!.isEmpty)
-    final isValid = _formKey.currentState?.validate();
+    void addTodo() {
+      //calls the todo Form validator of the title --> that makes sure field is not Empty (title!.isEmpty)
+      final isValid = _formKey.currentState?.validate();
 
-    if (isValid!) {
-      return; //User will get error message
-    } else {
-      final todo = Todo(
-          createdTime: DateTime.now(),
-          id: DateTime.now().toString(),
-          title: title,
-          description: description);
+      if (isValid!) {
+        return; //User will get error message
+      } else {
+        final todo = Todo(
+            createdTime: DateTime.now(),
+            id: DateTime.now().toString(),
+            title: title.value,
+            description: description.value);
 
-      Navigator.of(context).pop(); //"pop" the dialog from route --> close it
+        Navigator.of(context).pop(); //"pop" the dialog from route --> close it
 
+      }
     }
+
+    return AlertDialog(
+        content: Form(
+      key: _formKey,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Aufgabe hinzufügen",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+          ),
+          const SizedBox(height: 5), //Space inbetween
+          TodoFormWidget(
+            //Callbacks
+            onChangedTitle: (titleInput) {
+              title.value = titleInput;
+            },
+
+            onChangedDescription: (descriptionInput) {
+              description.value = descriptionInput;
+            },
+            onSaveTodo: (() => addTodo()),
+          )
+        ],
+      ),
+    ));
   }
 }

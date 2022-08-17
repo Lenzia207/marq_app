@@ -50,7 +50,7 @@ class _OverviewPageState extends State<OverviewPage> {
         child: Icon(Icons.add),
         backgroundColor: Colors.amber,
         onPressed: (() => showDialog(
-              builder: (context) => AddTodoDialogWidget(),
+              builder: (context) => AddTodoDialog(),
               context: context,
             )),
       ),

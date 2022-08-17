@@ -9,7 +9,7 @@ class TodoFormWidget extends StatelessWidget {
   //Callbacks
   final ValueChanged<String> onChangedTitle;
   final ValueChanged<String> onChangedDescription;
-  final ValueChanged onSaveTodo;
+  final VoidCallback onSaveTodo;
 
 //Constructor
   const TodoFormWidget(
@@ -66,6 +66,8 @@ class TodoFormWidget extends StatelessWidget {
       child: ElevatedButton(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.green)),
-          onPressed: () {},
+          onPressed: () {
+            onSaveTodo();
+          },
           child: const Text('Speichern')));
 }

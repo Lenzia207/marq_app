@@ -31,12 +31,11 @@ class Todo {
 ]; */
 
 class TodosNotifier extends StateNotifier<List<Todo>> {
-  TodosNotifier() : super([]);
-
-  final todos = <Todo>[
-    Todo(createdTime: DateTime.now(), id: "", title: 'First Task'),
-    Todo(createdTime: DateTime.now(), id: "", title: 'Second Task')
-  ];
+  TodosNotifier()
+      : super([
+          Todo(createdTime: DateTime.now(), id: "", title: 'First Task'),
+          Todo(createdTime: DateTime.now(), id: "", title: 'Second Task')
+        ]);
 
   // Let's allow the UI to add todos.
   void addTodo(Todo todo) {
