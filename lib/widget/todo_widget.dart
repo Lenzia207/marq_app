@@ -52,7 +52,7 @@ class TodoWidget extends StatelessWidget {
               activeColor: Theme.of(context).primaryColor,
               checkColor: Colors.white,
               value: todo.isDone,
-              onChanged: (_) {}),
+              onChanged: (value) {}),
 
           const SizedBox(width: 20),
 

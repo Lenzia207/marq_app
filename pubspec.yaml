@@ -41,6 +41,9 @@ dependencies:
   #Riverpod
   flutter_riverpod: ^2.0.0-dev.9
 
+  #UUID
+  #uuid: ^2.2.0
+
   # Firbebase integration
   firebase_core: ^0.5.2+1
   cloud_firestore: ^0.14.3+1

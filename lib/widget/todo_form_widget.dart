@@ -31,7 +31,7 @@ class TodoFormWidget extends StatelessWidget {
             buildTitle(),
             const SizedBox(height: 3),
             buildDescription(),
-            const SizedBox(height: 20),
+            const SizedBox(height: 8),
             buildSaveBtn()
           ],
         ),
@@ -42,6 +42,8 @@ class TodoFormWidget extends StatelessWidget {
         maxLines: 1,
         initialValue: title,
         onChanged: onChangedTitle,
+
+        //check validator in Dialog Widget
         validator: (title) {
           if (title!.isEmpty) {
             return 'Bitte trage eine Überschrift ein';
@@ -52,7 +54,7 @@ class TodoFormWidget extends StatelessWidget {
       );
 
   Widget buildDescription() => TextFormField(
-        maxLines: 3,
+        maxLines: 2,
         initialValue: description,
         onChanged: onChangedDescription,
         decoration: const InputDecoration(
