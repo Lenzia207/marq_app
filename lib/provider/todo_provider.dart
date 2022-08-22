@@ -1,5 +1,5 @@
+// ignore: depend_on_referenced_packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:marq_app/model/todo_model.dart';
 
 /* @immutable

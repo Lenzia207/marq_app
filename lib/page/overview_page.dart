@@ -8,6 +8,7 @@ class OverviewPage extends StatefulWidget {
   const OverviewPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _OverviewPageState createState() => _OverviewPageState();
 }
 
@@ -49,12 +50,12 @@ class _OverviewPageState extends State<OverviewPage> {
       //Add TO DO Task BUTTON
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        child: const Icon(Icons.add),
         backgroundColor: Colors.amber,
         onPressed: (() => showDialog(
               builder: (context) => AddTodoDialog(),
               context: context,
             )),
+        child: const Icon(Icons.add),
       ),
     );
   }

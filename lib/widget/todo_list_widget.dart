@@ -1,17 +1,16 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:marq_app/widget/todo_widget.dart';
 import 'package:marq_app/model/todo_model.dart';
 import 'package:marq_app/provider/todo_provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TodoListWidget extends ConsumerWidget {
+class TodoListWidget extends HookConsumerWidget {
   const TodoListWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     List<Todo> todos = ref.watch(todosProvider);
-    inspect(todos);
+    //inspect(todos);
 
     //Render the todos in a scrollable list view --> ListView()
     return todos.isEmpty
@@ -22,7 +21,7 @@ class TodoListWidget extends ConsumerWidget {
           ))
         : ListView.separated(
             physics: const BouncingScrollPhysics(),
-            //padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             separatorBuilder: (context, index) => Container(height: 5),
             itemCount: todos.length,
             itemBuilder: (context, index) {

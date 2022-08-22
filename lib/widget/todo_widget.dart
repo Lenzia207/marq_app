@@ -17,10 +17,10 @@ class TodoWidget extends HookConsumerWidget {
     ref.read(todosProvider.notifier).removeTodo(todo.id);
 
     final snackBar = SnackBar(
-      duration: Duration(seconds: 20),
-      content: Text("Wird gelöscht"),
+      duration: const Duration(seconds: 20),
+      content: const Text("Wird gelöscht"),
       action: SnackBarAction(
-        label: 'Dismiss',
+        label: 'Undo',
         onPressed: () {},
       ),
     );
