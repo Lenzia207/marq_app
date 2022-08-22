@@ -3,6 +3,7 @@ import 'package:marq_app/main.dart';
 import 'package:marq_app/widget/add_todo_dialog.dart';
 
 import '../widget/todo_list_widget.dart';
+import '../widget/completed_widget.dart';
 
 class OverviewPage extends StatefulWidget {
   const OverviewPage({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _OverviewPageState extends State<OverviewPage> {
   Widget build(BuildContext context) {
     final tabs = [
       const TodoListWidget(),
-      Container(),
+      const CompletedWidget(),
     ];
 
     return Scaffold(

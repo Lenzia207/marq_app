@@ -61,7 +61,7 @@ class AddTodoDialog extends HookConsumerWidget {
               onChangedDescription: (descriptionInput) {
                 description.value = descriptionInput;
               },
-              onSaveTodo: (() => addTask()),
+              onSaveTodo: () => addTask(),
             )
           ],
         ),

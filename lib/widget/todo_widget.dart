@@ -4,6 +4,8 @@ import 'package:marq_app/model/todo_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:marq_app/provider/todo_provider.dart';
 
+import '../page/edit_todo_page.dart';
+
 class TodoWidget extends HookConsumerWidget {
   //For the Todo make use of the Title & Description
   final Todo todo;
@@ -28,6 +30,12 @@ class TodoWidget extends HookConsumerWidget {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
+  void editTodo(BuildContext context, WidgetRef ref) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => EditTodoPage(todo: todo)),
+    );
+  }
+
   @override
   //ClipRRect() --> For Border Radius Container/Box/Widget
   Widget build(BuildContext context, WidgetRef ref) => ClipRRect(
@@ -43,7 +51,7 @@ class TodoWidget extends HookConsumerWidget {
             caption: 'Edit',
             foregroundColor: Colors.white,
             color: Colors.green,
-            onTap: () {},
+            onTap: () => editTodo(context, ref),
           ),
         ],
 

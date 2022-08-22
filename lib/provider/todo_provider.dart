@@ -29,6 +29,8 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
         if (todo.id == todoId) todo.copyWith(isDone: !todo.isDone) else todo,
     ];
   }
+
+  void updateTodo(String todoId) {}
 }
 
 // Finally, we are using StateNotifierProvider to allow the UI to interact with
