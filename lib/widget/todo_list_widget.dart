@@ -1,9 +1,7 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:marq_app/widget/todo_widget.dart';
-//import 'package:riverpod/riverpod.dart';
 import 'package:marq_app/model/todo_model.dart';
 import 'package:marq_app/provider/todo_provider.dart';
 
@@ -17,21 +15,22 @@ class TodoListWidget extends ConsumerWidget {
 
     //Render the todos in a scrollable list view --> ListView()
     return todos.isEmpty
-        ? Center(
+        ? const Center(
             child: Text(
             'Keine Aufgaben',
             style: TextStyle(fontSize: 20),
           ))
         : ListView.separated(
-            physics: BouncingScrollPhysics(),
-            padding: EdgeInsets.all(16),
-            separatorBuilder: (context, index) => Container(height: 10),
+            physics: const BouncingScrollPhysics(),
+            //padding: const EdgeInsets.all(16),
+            separatorBuilder: (context, index) => Container(height: 5),
             itemCount: todos.length,
             itemBuilder: (context, index) {
               final todo = todos[index];
 
               return TodoWidget(todo: todo);
-            });
+            },
+          );
 
     /* children: [
         for (final todo in todos)

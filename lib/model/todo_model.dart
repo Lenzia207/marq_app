@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-/* import 'package:uuid/uuid.dart';
-
-var _uuid = Uuid(); */
 
 class TodoField {
   static const createdTime = "createdTime";

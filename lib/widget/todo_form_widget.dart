@@ -29,9 +29,9 @@ class TodoFormWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             buildTitle(),
-            const SizedBox(height: 3),
+            // const SizedBox(height: 3),
             buildDescription(),
-            const SizedBox(height: 8),
+            // const SizedBox(height: 8),
             buildSaveBtn()
           ],
         ),
@@ -45,11 +45,12 @@ class TodoFormWidget extends StatelessWidget {
 
         //check validator in Dialog Widget
         validator: (title) {
-          if (title!.isEmpty) {
+          if (title!.isEmpty || title == null) {
             return 'Bitte trage eine Überschrift ein';
           }
+          return null;
         },
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
             border: UnderlineInputBorder(), labelText: 'Überschrift'),
       );
 

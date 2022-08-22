@@ -2,10 +2,12 @@ import 'package:flutter/material.dart'; //contains build in widgets + base class
 import 'package:marq_app/page/overview_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() => runApp(ProviderScope(child: MyApp()));
+void main() => runApp(const ProviderScope(child: MyApp()));
 
 class MyApp extends StatelessWidget {
-  static final String title = 'Marquably Aufgaben';
+  static const String title = 'Marquably Aufgaben';
+
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => MaterialApp(
@@ -13,8 +15,8 @@ class MyApp extends StatelessWidget {
         title: title,
         theme: ThemeData(
           primarySwatch: Colors.blueGrey,
-          scaffoldBackgroundColor: Color(0xFFf6f5ee),
+          scaffoldBackgroundColor: const Color(0xFFf6f5ee),
         ),
-        home: OverviewPage(),
+        home: const OverviewPage(),
       );
 }

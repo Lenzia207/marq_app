@@ -3,9 +3,11 @@ import 'package:marq_app/main.dart';
 import 'package:marq_app/widget/add_todo_dialog.dart';
 
 import '../widget/todo_list_widget.dart';
-import '../widget/todo_widget.dart';
 
 class OverviewPage extends StatefulWidget {
+  const OverviewPage({Key? key}) : super(key: key);
+
+  @override
   _OverviewPageState createState() => _OverviewPageState();
 }
 
@@ -15,13 +17,13 @@ class _OverviewPageState extends State<OverviewPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = [
-      TodoListWidget(),
+      const TodoListWidget(),
       Container(),
     ];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(MyApp.title),
+        title: const Text(MyApp.title),
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -31,7 +33,7 @@ class _OverviewPageState extends State<OverviewPage> {
         onTap: (index) => setState(() {
           selectedIndex = index;
         }),
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.fact_check_outlined),
             label: "TO DO's",
@@ -47,7 +49,7 @@ class _OverviewPageState extends State<OverviewPage> {
       //Add TO DO Task BUTTON
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         backgroundColor: Colors.amber,
         onPressed: (() => showDialog(
               builder: (context) => AddTodoDialog(),

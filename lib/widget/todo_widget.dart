@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marq_app/model/todo_model.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:marq_app/provider/todo_provider.dart';
 
-class TodoWidget extends StatelessWidget {
+class TodoWidget extends HookConsumerWidget {
   //For the Todo make use of the Title & Description
   final Todo todo;
 
@@ -12,13 +13,27 @@ class TodoWidget extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  void deleteTodo(BuildContext context, WidgetRef ref) {
+    ref.read(todosProvider.notifier).removeTodo(todo.id);
+
+    final snackBar = SnackBar(
+      duration: Duration(seconds: 20),
+      content: Text("Wird gelöscht"),
+      action: SnackBarAction(
+        label: 'Dismiss',
+        onPressed: () {},
+      ),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   //ClipRRect() --> For Border Radius Container/Box/Widget
-  Widget build(BuildContext context) => ClipRRect(
+  Widget build(BuildContext context, WidgetRef ref) => ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: Slidable(
-        child: buildTodo(context),
-        actionPane: SlidableDrawerActionPane(),
+        actionPane: const SlidableDrawerActionPane(),
         key: Key(todo.id),
 
         //Create Edit
@@ -38,13 +53,14 @@ class TodoWidget extends StatelessWidget {
             caption: 'Delete',
             foregroundColor: Colors.white,
             color: Colors.red,
-            onTap: () {},
+            onTap: () => deleteTodo(context, ref),
           )
         ],
+        child: buildTodo(context),
       ));
 
   Widget buildTodo(BuildContext context) => Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       color: Colors.white,
       child: Row(
         children: [
@@ -73,10 +89,10 @@ class TodoWidget extends StatelessWidget {
               //If there is a DESCRIPTION
               if (todo.description.isNotEmpty)
                 Container(
-                    margin: EdgeInsets.only(top: 4),
+                    margin: const EdgeInsets.only(top: 4),
                     child: Text(
                       todo.description,
-                      style: TextStyle(fontSize: 20, height: 1.5),
+                      style: const TextStyle(fontSize: 20, height: 1.5),
                     ))
             ],
           ))
