@@ -2,34 +2,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:marq_app/model/todo_model.dart';
 
-/* @immutable
-class Todo {
-  const Todo({
-    required this.createdTime, 
-    required this.id, 
-    required this.title, 
-    required this.description, 
-    required this.isDone
-  });
-
-  DateTime createdTime;
-  String id;
-  String title;
-  String description;
-  bool isDone;
-
-} */
-
-/* final todos = <Todo>[
-  Todo(createdTime: DateTime.now(), id: "", title: 'First Task'),
-  Todo(createdTime: DateTime.now(), id: "", title: 'Second Task'),
-  Todo(
-      createdTime: DateTime.now(), id: "", title: 'Third Task', description: '''
--Thing 1 
-- Thing 2
-- Thing 3 ''')
-]; */
-
 class TodosNotifier extends StateNotifier<List<Todo>> {
   TodosNotifier()
       : super([

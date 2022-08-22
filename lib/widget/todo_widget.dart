@@ -56,46 +56,53 @@ class TodoWidget extends HookConsumerWidget {
             onTap: () => deleteTodo(context, ref),
           )
         ],
-        child: buildTodo(context),
+        child: buildTodo(context, ref),
       ));
 
-  Widget buildTodo(BuildContext context) => Container(
-      padding: const EdgeInsets.all(20),
-      color: Colors.white,
-      child: Row(
-        children: [
-          Checkbox(
+  Widget buildTodo(BuildContext context, WidgetRef ref) {
+    //List<Todo> todos = ref.watch(todosProvider);
+
+    return Container(
+        padding: const EdgeInsets.all(20),
+        color: Colors.white,
+        child: Row(
+          children: [
+            //for (final todo in todos)
+            Checkbox(
               activeColor: Theme.of(context).primaryColor,
               checkColor: Colors.white,
               value: todo.isDone,
-              onChanged: (value) {}),
+              onChanged: (value) =>
+                  ref.read(todosProvider.notifier).toggle(todo.id),
+            ),
 
-          const SizedBox(width: 20),
+            const SizedBox(width: 20),
 
-          //if there would be a description it can optinally expand to read description
-          Expanded(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //TITLE
-              Text(
-                todo.title,
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 22),
-              ),
+            //if there would be a description it can optinally expand to read description
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //TITLE
+                Text(
+                  todo.title,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 22),
+                ),
 
-              //If there is a DESCRIPTION
-              if (todo.description.isNotEmpty)
-                Container(
-                    margin: const EdgeInsets.only(top: 4),
-                    child: Text(
-                      todo.description,
-                      style: const TextStyle(fontSize: 20, height: 1.5),
-                    ))
-            ],
-          ))
-        ],
-      ));
+                //If there is a DESCRIPTION
+                if (todo.description.isNotEmpty)
+                  Container(
+                      margin: const EdgeInsets.only(top: 4),
+                      child: Text(
+                        todo.description,
+                        style: const TextStyle(fontSize: 20, height: 1.5),
+                      ))
+              ],
+            ))
+          ],
+        ));
+  }
 }
