@@ -10,6 +10,7 @@ class TodoListWidget extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     List<Todo> todos = ref.watch(todosProvider);
+    final filter = ref.watch(filterProvider);
     //inspect(todos);
 
     //Render the todos in a scrollable list view --> ListView()
@@ -23,6 +24,7 @@ class TodoListWidget extends HookConsumerWidget {
             physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.all(16),
             separatorBuilder: (context, index) => Container(height: 5),
+            //onTap: () => ref.read(filterProvider.notifier).state = Filter.uncompleted,
             itemCount: todos.length,
             itemBuilder: (context, index) {
               final todo = todos[index];

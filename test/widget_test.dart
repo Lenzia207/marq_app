@@ -7,24 +7,36 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:marq_app/main.dart';
+import 'package:marq_app/model/todo_model.dart';
+import 'package:marq_app/provider/todo_provider.dart';
+import 'package:marq_app/widget/add_todo_dialog.dart';
+import 'package:marq_app/widget/todo_form_widget.dart';
+import 'package:marq_app/widget/todo_widget.dart';
+
+/* import 'package:marq_app/main.dart';
+import 'package:marq_app/widget/todo_form_widget.dart'; */
+//import 'package:marq_app/widget/add_todo_dialog.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Add Todo', (tester) async {
+    await tester.pumpWidget(const ProviderScope(child: AboutDialog()));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    //Find all Widgets needed --> Add Input Title/Description, Add Button
+    final addTitle = find.byKey(const ValueKey("addTitle"));
+    final addDescription = find.byKey(const ValueKey("addDescription"));
+    final addSaveBtn = find.byKey(const ValueKey("addSaveBtn"));
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Execute actual test
+    await tester.enterText(addTitle, "Tester Title");
+    await tester.enterText(addDescription, "Tester Description");
+    await tester.tap(addSaveBtn);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    await tester.pump(); //Rebuild Widget
+
+    //Check outputs
+    expect(find.text("Tester Title"), findsOneWidget);
+    expect(find.text("Tester Description"), findsOneWidget);
   });
 }

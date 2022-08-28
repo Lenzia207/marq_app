@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:marq_app/provider/todo_provider.dart';
 import 'package:marq_app/widget/todo_form_widget.dart';
 import 'package:marq_app/model/todo_model.dart';
@@ -9,8 +10,8 @@ import 'package:marq_app/model/todo_model.dart';
 class EditTodoPage extends HookConsumerWidget {
   final _formKey = GlobalKey<FormState>();
 
-  String title = " ";
-  String description = " ";
+  late String title;
+  late String description;
 
   final Todo todo;
 
@@ -18,19 +19,12 @@ class EditTodoPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final title = useState<String>("");
+    final textEditingController = useTextEditingController();
     final description = useState<String>("");
+    final text = useState<String>("");
 
     void saveTodo() {
       if (_formKey.currentState!.validate()) {
-        final todo = Todo(
-            createdTime: DateTime.now(),
-            id: DateTime.now().toString(),
-            title: title.value,
-            description: description.value);
-
-        ref.read(todosProvider.notifier).addTodo(todo);
-
         Navigator.pop(context); //"pop" the dialog from route --> close it
       }
     }
@@ -55,10 +49,24 @@ class EditTodoPage extends HookConsumerWidget {
           key: _formKey,
           child: TodoFormWidget(
             onChangedTitle: (titleInput) {
-              title.value = titleInput;
+              if (titleInput == true) {
+                textEditingController.text = todo.title;
+              } else {
+                ref.read(todosProvider.notifier).editTodo(
+                      id: todo.id,
+                      title: textEditingController.text,
+                    );
+              }
             },
             onChangedDescription: (descriptionInput) {
-              description.value = descriptionInput;
+              if (descriptionInput == true) {
+                textEditingController.text = todo.description;
+              } else {
+                ref.read(todosProvider.notifier).editTodo(
+                      id: todo.id,
+                      description: textEditingController.text,
+                    );
+              }
             },
             onSaveTodo: () => saveTodo(),
           ),

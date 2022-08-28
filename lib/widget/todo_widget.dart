@@ -57,6 +57,7 @@ class TodoWidget extends HookConsumerWidget {
 
         secondaryActions: [
           IconSlideAction(
+            key: Key("deleteBtn"),
             icon: Icons.delete,
             caption: 'Delete',
             foregroundColor: Colors.white,
@@ -68,7 +69,7 @@ class TodoWidget extends HookConsumerWidget {
       ));
 
   Widget buildTodo(BuildContext context, WidgetRef ref) {
-    //List<Todo> todos = ref.watch(todosProvider);
+    //final todos = ref.watch(filteredTodoProvider);
 
     return Container(
         padding: const EdgeInsets.all(20),

@@ -11,6 +11,7 @@ class CompletedWidget extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     List<Todo> todos = ref.watch(todosProvider);
+
     //inspect(todos);
 
     //Render the todos in a scrollable list view --> ListView()

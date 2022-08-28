@@ -1,4 +1,3 @@
-//import 'dart:html';
 import 'package:flutter/material.dart';
 
 class TodoFormWidget extends StatelessWidget {
@@ -39,6 +38,7 @@ class TodoFormWidget extends StatelessWidget {
 
   //buildTitle Method for the Title/Überschrift Form Field
   Widget buildTitle() => TextFormField(
+        key: const Key("addTitle"),
         maxLines: 1,
         initialValue: title,
         onChanged: onChangedTitle,
@@ -55,6 +55,7 @@ class TodoFormWidget extends StatelessWidget {
       );
 
   Widget buildDescription() => TextFormField(
+        key: Key("addDescription"),
         maxLines: 2,
         initialValue: description,
         onChanged: onChangedDescription,
@@ -63,6 +64,7 @@ class TodoFormWidget extends StatelessWidget {
       );
 
   Widget buildSaveBtn() => SizedBox(
+      key: Key("addSaveBtn"),
       width: double.infinity,
       child: ElevatedButton(
           style: ButtonStyle(
