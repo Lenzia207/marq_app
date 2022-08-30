@@ -40,8 +40,8 @@ void main() {
   });
 
   testWidgets('Delete Todo', (tester) async {
-    final Todo todo =
-        new Todo(id: 'id', title: 'test', description: 'test', isDone: false);
+/*     final Todo todo =
+        new Todo(id: 'id', title: 'test', description: 'test', isDone: false); */
     await tester.pumpWidget(const ProviderScope(
         child: MaterialApp(
             home: TodoWidget(
