@@ -6,6 +6,7 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:marq_app/model/todo_model.dart';
@@ -49,6 +50,7 @@ void main() {
     ))));
 
     final deleteBtn = find.byKey(const ValueKey("deleteBtn"));
+    await tester.drag(find.byType(Slidable), const Offset(100, 0));
     expect(deleteBtn, findsOneWidget);
 
     await tester.tap(deleteBtn);

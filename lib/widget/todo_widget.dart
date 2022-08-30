@@ -57,7 +57,7 @@ class TodoWidget extends HookConsumerWidget {
 
         secondaryActions: [
           IconSlideAction(
-            key: Key("deleteBtn"),
+            key: const Key("deleteBtn"),
             icon: Icons.delete,
             caption: 'Delete',
             foregroundColor: Colors.white,
