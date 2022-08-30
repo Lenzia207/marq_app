@@ -26,7 +26,7 @@ class AddTodoDialog extends HookConsumerWidget {
       //calls the todo Form validator of the title --> that makes sure field is not Empty (title!.isEmpty)
       if (_formKey.currentState!.validate()) {
         final todo = Todo(
-            createdTime: DateTime.now(),
+            /* createdTime: DateTime.now(), */
             id: DateTime.now().toString(),
             title: title.value,
             description: description.value);

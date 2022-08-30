@@ -6,7 +6,7 @@ class TodoField {
 
 @immutable
 class Todo {
-  final DateTime createdTime;
+  /* final DateTime createdTime; */
   final String id;
   final String title;
   final String description;
@@ -14,7 +14,7 @@ class Todo {
 
   //Constructor
   const Todo({
-    required this.createdTime,
+    /* required this.createdTime, */
     required this.id,
     required this.title,
     this.description = "",
@@ -28,7 +28,7 @@ class Todo {
       String? description,
       bool? isDone}) {
     return Todo(
-        createdTime: createdTime ?? this.createdTime,
+        /*  createdTime: createdTime ?? this.createdTime , */
         id: id ?? this.id,
         title: title ?? this.title,
         description: description ?? this.description,

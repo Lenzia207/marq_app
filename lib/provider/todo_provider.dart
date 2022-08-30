@@ -6,8 +6,8 @@ import 'package:marq_app/model/todo_model.dart';
 class TodosNotifier extends StateNotifier<List<Todo>> {
   TodosNotifier()
       : super([
-          /* Todo(createdTime: DateTime.now(), id: "", title: 'First Task'),
-          Todo(
+          Todo(/* createdTime: DateTime.now() ,*/ id: "", title: 'First Task'),
+          /* Todo(
               createdTime: DateTime.now(),
               id: "",
               title: 'Second Task',
@@ -41,7 +41,7 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
       for (final todo in state)
         if (todo.id == id)
           Todo(
-            createdTime: DateTime.now(),
+            /* createdTime: DateTime.now(), */
             id: todo.id,
             isDone: todo.isDone,
             title: todo.title,
