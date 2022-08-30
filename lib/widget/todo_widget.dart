@@ -19,11 +19,11 @@ class TodoWidget extends HookConsumerWidget {
     ref.read(todosProvider.notifier).removeTodo(todo.id);
 
     final snackBar = SnackBar(
-      duration: const Duration(seconds: 20),
+      duration: const Duration(seconds: 5),
       content: const Text("Wird gelöscht"),
       action: SnackBarAction(
         label: 'Undo',
-        onPressed: () {},
+        onPressed: () => ref.read(todosProvider.notifier).remove(todo),
       ),
     );
 
@@ -44,7 +44,7 @@ class TodoWidget extends HookConsumerWidget {
         actionPane: const SlidableDrawerActionPane(),
         key: Key(todo.id),
 
-        //Create Edit
+        //Create EDIT
         actions: [
           IconSlideAction(
             icon: Icons.edit,
@@ -55,14 +55,18 @@ class TodoWidget extends HookConsumerWidget {
           ),
         ],
 
+        //Create DELETE
         secondaryActions: [
-          IconSlideAction(
+          Container(
             key: const Key("deleteBtn"),
-            icon: Icons.delete,
-            caption: 'Delete',
-            foregroundColor: Colors.white,
-            color: Colors.red,
-            onTap: () => deleteTodo(context, ref),
+            child: IconSlideAction(
+              /* key: const Key("deleteBtn"), */
+              icon: Icons.delete,
+              caption: 'Delete',
+              foregroundColor: Colors.white,
+              color: Colors.red,
+              onTap: () => deleteTodo(context, ref),
+            ),
           )
         ],
         child: buildTodo(context, ref),

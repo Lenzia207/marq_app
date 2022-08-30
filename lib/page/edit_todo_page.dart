@@ -64,7 +64,7 @@ class EditTodoPage extends HookConsumerWidget {
               } else {
                 ref.read(todosProvider.notifier).editTodo(
                       id: todo.id,
-                      description: textEditingController.text,
+                      title: textEditingController.text,
                     );
               }
             },

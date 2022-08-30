@@ -19,13 +19,21 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
     state = [...state, todo];
   }
 
-  //Remove Todos
+  //Remove DELETE Todos
   void removeTodo(String todoId) {
     state = [
       for (final todo in state)
         if (todo.id != todoId) todo,
     ];
   }
+
+  //another way to delete
+  void remove(Todo target) {
+    state = state.where((todo) => todo.id != target.id).toList();
+    ;
+  }
+
+  /* void undoDelete() => state = state.afterUndo(); */
 
   //Mark as isDone
   void toggle(String todoId) {
@@ -36,7 +44,8 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
   }
 
   //edit Todo Task
-  void editTodo({required String id, String? title, String? description}) {
+  void editTodo(
+      {required String id, required String title, String? description}) {
     state = [
       for (final todo in state)
         if (todo.id == id)
@@ -44,7 +53,7 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
             /* createdTime: DateTime.now(), */
             id: todo.id,
             isDone: todo.isDone,
-            title: todo.title,
+            title: title,
             description: todo.description,
           )
         else
