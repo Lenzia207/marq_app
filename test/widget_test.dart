@@ -49,8 +49,9 @@ void main() {
       todo: Todo(id: 'id', title: 'test', description: 'test', isDone: false),
     ))));
 
-    final deleteBtn = find.byKey(const ValueKey("deleteBtn"));
     await tester.drag(find.byType(Slidable), const Offset(100, 0));
+
+    final deleteBtn = find.byKey(const ValueKey("deleteBtn"));
     expect(deleteBtn, findsOneWidget);
 
     await tester.tap(deleteBtn);
