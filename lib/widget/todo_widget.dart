@@ -39,71 +39,61 @@ class TodoWidget extends HookConsumerWidget {
   @override
   //ClipRRect() --> For Border Radius Container/Box/Widget
   Widget build(BuildContext context, WidgetRef ref) => ClipRRect(
-      borderRadius: BorderRadius.circular(16),
-      child: Slidable(
-        actionPane: const SlidableDrawerActionPane(),
-        key: Key(todo.id),
+        borderRadius: BorderRadius.circular(16),
+        child: Slidable(
+          actionPane: const SlidableDrawerActionPane(),
+          key: Key(todo.id),
 
-        //Create EDIT
-        actions: [
-          IconSlideAction(
-            icon: Icons.edit,
-            caption: 'Edit',
-            foregroundColor: Colors.white,
-            color: Colors.green,
-            onTap: () => editTodo(context, ref),
-          ),
-          IconSlideAction(
-            /* key: const Key("deleteBtn"), */
-            icon: Icons.delete,
-            caption: 'Delete',
-            foregroundColor: Colors.white,
-            color: Colors.red,
-            onTap: () => deleteTodo(context, ref),
-          ),
-        ],
+          //Create EDIT
+          actions: [
+            IconSlideAction(
+              icon: Icons.edit,
+              caption: 'Edit',
+              foregroundColor: Colors.white,
+              color: Colors.green,
+              onTap: () => editTodo(context, ref),
+            ),
+          ],
 
-        //Create DELETE
-        secondaryActions: [
-          Container(
-            key: const Key("deleteBtn"),
-            child: IconSlideAction(
-              /* key: const Key("deleteBtn"), */
+          //Create DELETE
+          secondaryActions: [
+            IconSlideAction(
+              key: const Key("deleteBtn"),
               icon: Icons.delete,
               caption: 'Delete',
               foregroundColor: Colors.white,
               color: Colors.red,
               onTap: () => deleteTodo(context, ref),
             ),
-          )
-        ],
-        child: buildTodo(context, ref),
-      ));
+          ],
+          child: buildTodo(context, ref),
+        ),
+      );
 
   Widget buildTodo(BuildContext context, WidgetRef ref) {
     //final todos = ref.watch(filteredTodoProvider);
 
     return Container(
-        padding: const EdgeInsets.all(20),
-        color: Colors.white,
-        child: Card(
-          elevation: 0,
-          child: Row(
-            children: [
-              //for (final todo in todos)
-              Checkbox(
-                activeColor: Theme.of(context).primaryColor,
-                checkColor: Colors.white,
-                value: todo.isDone,
-                onChanged: (value) =>
-                    ref.read(todosProvider.notifier).toggle(todo.id),
-              ),
+      padding: const EdgeInsets.all(20),
+      color: Colors.white,
+      child: Card(
+        elevation: 0,
+        child: Row(
+          children: [
+            //for (final todo in todos)
+            Checkbox(
+              activeColor: Theme.of(context).primaryColor,
+              checkColor: Colors.white,
+              value: todo.isDone,
+              onChanged: (value) =>
+                  ref.read(todosProvider.notifier).toggle(todo.id),
+            ),
 
-              const SizedBox(width: 20),
+            const SizedBox(width: 20),
 
-              //if there would be a description it can optinally expand to read description
-              Expanded(
-                  child: Column(
+            //if there would be a description it can optinally expand to read description
+            Expanded(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //TITLE
@@ -124,9 +114,11 @@ class TodoWidget extends HookConsumerWidget {
                           style: const TextStyle(fontSize: 20, height: 1.5),
                         ))
                 ],
-              ))
-            ],
-          ),
-        ));
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

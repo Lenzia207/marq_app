@@ -5,6 +5,8 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -20,10 +22,13 @@ import 'package:marq_app/widget/todo_form_widget.dart'; */
 
 void main() {
   testWidgets('Add Todo', (tester) async {
-    await tester.pumpWidget(ProviderScope(
+    await tester.pumpWidget(
+      ProviderScope(
         child: MaterialApp(
-      home: AddTodoDialog(),
-    )));
+          home: AddTodoDialog(),
+        ),
+      ),
+    );
 
     //Find all Widgets needed --> Add Input Title/Description, Add Button
     final addTitle = find.byKey(const ValueKey("addTitle"));
@@ -42,43 +47,44 @@ void main() {
 
 //First way of DELETE Testing
   /*  testWidgets('Delete Todo', (tester) async {
-/*     final Todo todo =
-        new Todo(id: 'id', title: 'test', description: 'test', isDone: false); */
-    await tester.pumpWidget(const ProviderScope(
+    await tester.pumpWidget(
+      const ProviderScope(
         child: MaterialApp(
-            home: TodoWidget(
-      todo: Todo(id: 'id', title: 'test', description: 'test', isDone: false),
-    ))));
+          home: TodoWidget(
+            todo: Todo(
+                id: 'id', title: 'test', description: 'test', isDone: false),
+          ),
+        ),
+      ),
+    );
 
-    expect(find.byType(IconSlideAction), findsNothing);
-    await tester.dragFrom(Offset.zero, const Offset(100, 0));
-    await tester.pump(const Duration(seconds: 10));
-    expect(find.byType(IconSlideAction), findsOneWidget);
-    expect(find.byIcon(Icons.edit), findsOneWidget);
+    expect(find.byType(Slidable), findsOneWidget);
+    await tester.dragFrom(Offset.zero, const Offset(-1, 0));
+    await tester.pump(const Duration(seconds: 1));
 
-    await tester.drag(find.byType(Slidable), const Offset(100, 0));
-    /* await tester.tap(deleteBtn); */
-    await tester.pump(/* const Duration(seconds: 10) */);
+    final delete = find.byIcon(Icons.delete);
+    expect(delete, findsOneWidget);
+
+    await tester.tap(delete);
   }); */
 
 //Second way of DELETE Testing
   testWidgets('Delete Todo', (tester) async {
     await tester.pumpWidget(
-        const ProviderScope(child: MaterialApp(home: TodoListWidget())));
-
-    /* await tester.pumpAndSettle(); */
+      const ProviderScope(
+        child: MaterialApp(
+          home: TodoListWidget(),
+        ),
+      ),
+    );
 
     final findTodo = find.descendant(
         of: find.byType(ListView), matching: find.byType(TodoWidget));
     expect(findTodo, findsOneWidget);
 
-    await tester.drag(findTodo, const Offset(100, 0));
-    await tester.pump(const Duration(seconds: 10));
+    await tester.drag(findTodo, const Offset(-100, 0));
+    await tester.pump(const Duration(seconds: 1));
 
-/*     final foundSlidable = find.byType(Slidable);
-    expect(foundSlidable, findsOneWidget); */
-
-//This should actually be "Icons.delete" and not "Icons.edit", but it doesnt find the Icons.delete if you change it...
     final delete = find.byIcon(Icons.delete);
     expect(delete, findsOneWidget);
 
