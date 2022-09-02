@@ -79,7 +79,7 @@ void main() {
     expect(foundSlidable, findsOneWidget); */
 
 //This should actually be "Icons.delete" and not "Icons.edit", but it doesnt find the Icons.delete if you change it...
-    final delete = find.byIcon(Icons.edit);
+    final delete = find.byIcon(Icons.delete);
     expect(delete, findsOneWidget);
 
     await tester.tap(delete);
