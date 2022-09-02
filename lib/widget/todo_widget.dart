@@ -65,10 +65,17 @@ class TodoWidget extends HookConsumerWidget {
 
         //Create DELETE
         secondaryActions: [
-          /*   Container(
+          Container(
             key: const Key("deleteBtn"),
-            child: 
-          ) */
+            child: IconSlideAction(
+              /* key: const Key("deleteBtn"), */
+              icon: Icons.delete,
+              caption: 'Delete',
+              foregroundColor: Colors.white,
+              color: Colors.red,
+              onTap: () => deleteTodo(context, ref),
+            ),
+          )
         ],
         child: buildTodo(context, ref),
       ));
