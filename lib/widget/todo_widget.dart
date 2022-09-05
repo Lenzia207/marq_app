@@ -36,6 +36,13 @@ class TodoWidget extends HookConsumerWidget {
     );
   }
 
+  void checkTodo(BuildContext context, WidgetRef ref) {
+    ref.read(todosProvider.notifier).toggle(todo.id);
+
+    //if isDone == true --> move to complete Site
+    if (todo.isDone == true) {}
+  }
+
   @override
   //ClipRRect() --> For Border Radius Container/Box/Widget
   Widget build(BuildContext context, WidgetRef ref) => ClipRRect(

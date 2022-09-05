@@ -49,6 +49,9 @@ dependencies:
   # Firbebase integration
   firebase_core: ^1.21.0
   cloud_firestore: ^3.4.5
+
+  # Skeleton Screen
+  shimmer: ^2.0.0
   
 
 dev_dependencies:

@@ -70,19 +70,19 @@ final todosProvider = StateNotifierProvider<TodosNotifier, List<Todo>>((ref) {
 
 //COMPLETE Provider
 enum Filter {
-  none,
+  all,
   isDone,
   uncompleted,
 }
 
-final filterProvider = StateProvider((ref) => Filter.none);
+final todoListFilter = StateProvider((ref) => Filter.all);
 
 final filteredTodos = Provider<List<Todo>>((ref) {
-  final filter = ref.watch(filterProvider);
+  final filter = ref.watch(todoListFilter);
   final todos = ref.watch(todosProvider);
 
   switch (filter) {
-    case Filter.none:
+    case Filter.all:
       return todos;
     case Filter.isDone:
       return todos.where((todo) => todo.isDone).toList();

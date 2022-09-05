@@ -10,11 +10,11 @@ class CompletedWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<Todo> todos = ref.watch(todosProvider);
+    List<Todo> todos = ref.read(todosProvider);
 
     //inspect(todos);
 
-    //Render the todos in a scrollable list view --> ListView()
+    //Render the completed-todos in a scrollable list view --> ListView()
     return todos.isEmpty
         ? const Center(
             child: Text(
